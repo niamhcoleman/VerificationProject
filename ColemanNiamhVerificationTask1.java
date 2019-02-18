@@ -1,4 +1,3 @@
-import com.company.MyClass;
 import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.ArrayList;
