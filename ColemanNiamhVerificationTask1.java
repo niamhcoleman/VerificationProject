@@ -31,7 +31,7 @@ public class RateTest {
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        normalPeriods.add(new Period(12,1));
+        normalPeriods.add(new Period(12,13));
         reducedPeriods.add(new Period(1,2));
 
         Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
@@ -47,7 +47,7 @@ public class RateTest {
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        normalPeriods.add(new Period(12,1));
+        normalPeriods.add(new Period(12,13));
         reducedPeriods.add(new Period(1,2));
 
         Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
@@ -63,7 +63,7 @@ public class RateTest {
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        normalPeriods.add(new Period(12,1));
+        normalPeriods.add(new Period(12,13));
         reducedPeriods.add(new Period(1,2));
 
         Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
@@ -255,7 +255,7 @@ public class RateTest {
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        reducedPeriods.add(new Period(12,1));
+        reducedPeriods.add(new Period(12,13));
         normalPeriods.add(new Period(1,2));
 
         Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
@@ -271,7 +271,7 @@ public class RateTest {
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        reducedPeriods.add(new Period(12,1));
+        reducedPeriods.add(new Period(12,13));
         normalPeriods.add(new Period(1,2));
 
         Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
