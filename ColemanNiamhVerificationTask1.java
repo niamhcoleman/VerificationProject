@@ -1,20 +1,15 @@
-import org.junit.Test;
+import static org.junit.Assert.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 public class RateTest {
 
-    //***********
-    //RATES CONSTRUCTOR TESTS
-    //***********
-
     //Test Case #1
-    //Testing an invalid carParkKind
+    //Testing an null carParkKind
     @Test(expected = IllegalArgumentException.class)
     public void testOne() throws IllegalArgumentException {
-        CarParkKind kind = WRONGTYPE;
+        CarParkKind kind = null;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -26,11 +21,12 @@ public class RateTest {
         Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
     }
 
+
     //Test Case #2
     //normalRate must not be < 0
     @Test(expected = IllegalArgumentException.class)
     public void testTwo() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(-1);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -46,7 +42,7 @@ public class RateTest {
     //normalRate must not be < reducedRate
     @Test(expected = IllegalArgumentException.class)
     public void testThree() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(0);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -62,7 +58,7 @@ public class RateTest {
     //reducedRate must not be < 0
     @Test(expected = IllegalArgumentException.class)
     public void testFour() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(-1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -78,7 +74,7 @@ public class RateTest {
     //reducedRate must not be > normalRate
     @Test(expected = IllegalArgumentException.class)
     public void testFive() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(3);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -94,7 +90,7 @@ public class RateTest {
     //reducedPeriods.startHour must be < reducedPeriods.endHour
     @Test(expected = IllegalArgumentException.class)
     public void testSix() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -110,7 +106,7 @@ public class RateTest {
     //reducedPeriods must not overlap with normalPeriods
     @Test(expected = IllegalArgumentException.class)
     public void testSeven() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -126,7 +122,7 @@ public class RateTest {
     //reducedPeriods.startHour must be >= 0
     @Test(expected = IllegalArgumentException.class)
     public void testEight() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -142,7 +138,7 @@ public class RateTest {
     //reducedPeriods.endHour must be >= 0
     @Test(expected = IllegalArgumentException.class)
     public void testNine() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -158,7 +154,7 @@ public class RateTest {
     //reducedPeriods.startHour is > 24 && reducedPeriods.startHour is > reducedPeriods.endHour
     @Test(expected = IllegalArgumentException.class)
     public void testTen() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -174,7 +170,7 @@ public class RateTest {
     //normalPeriods.startHour is > normalPeriods.endHour
     @Test(expected = IllegalArgumentException.class)
     public void testEleven() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -190,7 +186,7 @@ public class RateTest {
     //There must be no overlap between normalPeriods and reducedPeriods
     @Test(expected = IllegalArgumentException.class)
     public void testTwelve() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -206,7 +202,7 @@ public class RateTest {
     //normalPeriods.startHour must be >= 0
     @Test(expected = IllegalArgumentException.class)
     public void testThirteen() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -222,7 +218,7 @@ public class RateTest {
     //normalPeriods.startHour must be >= 0 && normalPeriods.startHour must be >= 24
     @Test(expected = IllegalArgumentException.class)
     public void testFourteen() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -238,7 +234,7 @@ public class RateTest {
     //normalPeriods.startHour must be < normalPeriods.endHour && normalPeriods.endHour must be >= 0
     @Test(expected = IllegalArgumentException.class)
     public void testFifteen() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -270,7 +266,7 @@ public class RateTest {
     //normalRate is NULL
     @Test(expected = IllegalArgumentException.class)
     public void testSeventeen() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = null;
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -286,7 +282,7 @@ public class RateTest {
     //reducedRate is NULL
     @Test(expected = IllegalArgumentException.class)
     public void testEighteen() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = null;
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
@@ -302,128 +298,121 @@ public class RateTest {
     //reducedPeriods is NULL
     @Test(expected = IllegalArgumentException.class)
     public void testNineteen() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        reducedPeriods.add(new Period(null));
         normalPeriods.add(new Period(1,2));
 
-        Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
+        Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, null);
     }
 
     //Test Case #20
     //normalPeriods is NULL
     @Test(expected = IllegalArgumentException.class)
     public void testTwenty() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
         reducedPeriods.add(new Period(1,2));
-        normalPeriods.add(new Period(null));
 
-        Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
+        Rate newRate = new Rate(kind, normalRate, reducedRate,null, reducedPeriods);
     }
+
 
     //***********
     //CALCULATE METHOD TESTS
     //***********
 
     //Test Case #21
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testTwentyOne() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(0);
         BigDecimal reducedRate = new BigDecimal(0);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        reducedPeriods.add(new Period(12,1));
+        reducedPeriods.add(new Period(12,13));
         normalPeriods.add(new Period(1,2));
 
         Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
-        calc_result = newRate.Calculate(12,3);
 
-        assertEquals((new BigDecimal(0)),calc_result);
+
+
+        assertEquals((new BigDecimal(0)), newRate.calculate(new Period(12,15)));
     }
 
     //Test Case #22
     @Test
     public void testTwentyTwo() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(1);
         BigDecimal reducedRate = new BigDecimal(0);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        reducedPeriods.add(new Period(12,1));
+        reducedPeriods.add(new Period(12,13));
         normalPeriods.add(new Period(1,2));
 
         Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
-        calc_result = newRate.Calculate(12,3);
 
-        assertEquals((new BigDecimal(1)),calc_result);
+        assertEquals((new BigDecimal(1)), newRate.calculate((new Period(12,15))));
     }
 
     //Test Case #23
     @Test
     public void testTwentyThree() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-        reducedPeriods.add(new Period(24,0));
+        reducedPeriods.add(new Period(5,6));
         normalPeriods.add(new Period(3,4));
 
         Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
-        calc_result = newRate.Calculate(12,3);
 
-        assertEquals((new BigDecimal(0)),calc_result);
+        assertEquals((new BigDecimal(0)), newRate.calculate((new Period(12,15))));
     }
 
     //Test Case #24
     @Test
     public void testTwentyFour() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
         reducedPeriods.add(new Period(1,2));
-        normalPeriods.add(new Period(12,1));
+        normalPeriods.add(new Period(12,13));
 
         Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
-        calc_result = newRate.Calculate(12,3);
 
-        assertEquals((new BigDecimal(3)),calc_result);
+        assertEquals((new BigDecimal(1)), newRate.calculate((new Period(12,15))));
     }
 
     //Test Case #25
     @Test
     public void testTwentyFive() throws IllegalArgumentException {
-        CarParkKind kind = STAFF;
+        CarParkKind kind = CarParkKind.STAFF;
         BigDecimal normalRate = new BigDecimal(2);
         BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
         reducedPeriods.add(new Period(3,4));
-        normalPeriods.add(new Period(24,0));
+        normalPeriods.add(new Period(4,5));
 
         Rate newRate = new Rate(kind, normalRate, reducedRate,normalPeriods, reducedPeriods);
-        calc_result = newRate.Calculate(12,3);
 
-        assertEquals((new BigDecimal(0)),calc_result);
+        assertEquals((new BigDecimal(0)),newRate.calculate(new Period(12,15)));
     }
-
-
-
 }
