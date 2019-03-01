@@ -1,5 +1,4 @@
 package cm;
-
 import static org.junit.Assert.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -522,13 +521,13 @@ public class RateTest {
 
     /*
     test 28
-   free up to and including 5.50 for students
+   normal up to and including 5.50 for students
     */
     @Test
     public void test28(){
         CarParkKind kind = CarParkKind.STUDENT;
-        BigDecimal normalRate = new BigDecimal(1);
-        BigDecimal reducedRate = new BigDecimal(0.5);
+        BigDecimal normalRate = new BigDecimal(2);
+        BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
 
@@ -537,7 +536,7 @@ public class RateTest {
 
         Rate newRate = new Rate(kind,normalRate,reducedRate,reducedPeriods,normalPeriods);
 
-        assertEquals(new BigDecimal(0), newRate.calculate((new Period(12,23))));
+        assertEquals(new BigDecimal(5), newRate.calculate((new Period(12,17))));
     }
 
     /*
@@ -603,4 +602,5 @@ public class RateTest {
 
 
 }
+
 
