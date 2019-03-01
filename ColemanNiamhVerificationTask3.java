@@ -428,8 +428,8 @@ public class RateTest {
     @Test
     public void test23(){
         CarParkKind kind = CarParkKind.VISITOR;
-        BigDecimal normalRate = new BigDecimal(2.0);
-        BigDecimal reducedRate = new BigDecimal(1.0);
+        BigDecimal normalRate = new BigDecimal(2);
+        BigDecimal reducedRate = new BigDecimal(1);
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
 
@@ -556,8 +556,8 @@ public class RateTest {
 
         Rate newRate = new Rate(kind,normalRate,reducedRate,reducedPeriods,normalPeriods);
 
-        //4 hr stay @ 2 = 8. 5.50 is free so total is 2.50/4 =
-        assertEquals(new BigDecimal(.63), newRate.calculate((new Period(12,16))));
+        //4 hr stay @ 2 = 8. total is 8 - (8/4) = 6
+        assertEquals(new BigDecimal(6), newRate.calculate((new Period(12,16))));
     }
 
     /*
@@ -602,5 +602,7 @@ public class RateTest {
 
 
 }
+
+
 
 
