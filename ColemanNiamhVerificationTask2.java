@@ -1,3 +1,5 @@
+package cm;
+
 import static org.junit.Assert.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
