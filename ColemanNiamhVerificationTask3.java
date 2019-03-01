@@ -557,7 +557,7 @@ public class RateTest {
         Rate newRate = new Rate(kind,normalRate,reducedRate,reducedPeriods,normalPeriods);
 
         //4 hr stay @ 2 = 8. total is 8 - (8/4) = 6
-        assertEquals(new BigDecimal(6), newRate.calculate((new Period(12,16))));
+        assertEquals(BigDecimal.valueOf(6), newRate.calculate((new Period(12,16))));
     }
 
     /*
@@ -602,6 +602,7 @@ public class RateTest {
 
 
 }
+
 
 
 
