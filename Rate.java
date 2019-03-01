@@ -1,7 +1,6 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.math.RoundingMode;
 
 /**
  * Created by CM on 01/02/2018.
@@ -12,6 +11,10 @@ public class Rate {
     private BigDecimal hourlyReducedRate;
     private ArrayList<Period> reduced = new ArrayList<>();
     private ArrayList<Period> normal = new ArrayList<>();
+    private final NewCharge visitorRate = new VisitorRate();
+    private final NewCharge studentRate = new StudentRate();
+    private final NewCharge staffRate = new StaffRate();
+    private final NewCharge managementRate = new ManagementRate();
 
     public Rate(CarParkKind kind, BigDecimal normalRate, BigDecimal reducedRate, ArrayList<Period> reducedPeriods
             , ArrayList<Period> normalPeriods) {
@@ -109,55 +112,18 @@ public class Rate {
         BigDecimal total = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
                 this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
 
-        //Visitor rates:
-        if (kind == CarParkKind.VISITOR) {
-            BigDecimal VisitorFreeUntil = new BigDecimal(8);
-
-            //if total is > 8 OR total is equal to 8
-            if ((total.compareTo(VisitorFreeUntil) == 1) || (total.compareTo(VisitorFreeUntil) == 0))
-            {
-                total = total.subtract(VisitorFreeUntil); //take away the free first 8 hours
-                total = total.divide(new BigDecimal(2)); //divide the rest by 2 to get fify percent discount on remainder
-            }
-            else
-            {
-                total = new BigDecimal(0);
-            }
-        }
-
-        //Management rates:
-        if (kind == CarParkKind.MANAGEMENT)
+        switch(kind)
         {
-            BigDecimal ManagementMinCharge = new BigDecimal(3);
-
-            //if total is less than min charge or equal to min charge, change total to min charge
-            if ((total.compareTo(ManagementMinCharge) < 0) || (total.compareTo(ManagementMinCharge) == 0)) {
-                total = new BigDecimal(3);
-            }
-        }
-
-        //Student rates:
-        if (kind == CarParkKind.STUDENT)
-        {
-            BigDecimal freeUntil = new BigDecimal(5.5);
-            //if total is > 5.50, apply a 25% discount
-            if(!(total.compareTo(freeUntil) < 0))
-            {
-                total = total.subtract(total.multiply(new BigDecimal(.25)));
-            }
-        }
-
-        //Staff rates
-        if (kind == CarParkKind.STAFF)
-        {
-            BigDecimal maxPayable = new BigDecimal(16); //max payable is 16 euro per day
-
-            if (!(total.compareTo(maxPayable) < 0)) //if total is > 16
-            {
-                total = maxPayable;
-            }
+            case VISITOR:
+                return visitorRate.calculate(total);
+            case MANAGEMENT:
+                return managementRate.calculate(total);
+            case STUDENT:
+                return studentRate.calculate(total);
+            default: //STAFF
+                return staffRate.calculate(total);
 
         }
-        return total.setScale(0, RoundingMode.CEILING);
+
     }
 }
