@@ -23,7 +23,7 @@ class VisitorRate implements NewCharge {
         {
             rate = new BigDecimal(0);
         }
-        return rate;
+        return rate.setScale(0, RoundingMode.CEILING);
     }
 }
 
@@ -40,7 +40,7 @@ class ManagementRate implements NewCharge {
         }
 
 
-        return rate;
+        return rate.setScale(0, RoundingMode.CEILING);
     }
 }
 
@@ -56,7 +56,7 @@ class StudentRate implements NewCharge {
             rate = rate.subtract(rate.multiply(new BigDecimal(.25)));
         }
 
-        return rate;
+        return rate.setScale(0, RoundingMode.CEILING);
     }
 }
 
